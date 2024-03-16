@@ -1,10 +1,10 @@
 class Cell:
     def __init__(self,
-            x: int,
-            y: int,
-            board: int,
-            locked: bool=False,
-            cell_state: int=0):
+        x: int,
+        y: int,
+        board: int,
+        locked: bool=False,
+        cell_state: int=0):
         """Cells are the individual blocks that make up a board on the game face.
         Args:
             x (int): The row coordinate from 0 to the length of the board

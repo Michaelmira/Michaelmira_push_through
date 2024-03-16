@@ -1,3 +1,4 @@
-from cell import Cell
+from board import Board
+from defines import *
 
-cell = Cell(x=1, y=2, board=0)
+board = Board(GAME_HEIGHT, GAME_WIDTH, 0)
