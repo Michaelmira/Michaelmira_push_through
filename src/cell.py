@@ -1,10 +1,18 @@
+from enum import Enum
+
+class CellState(Enum):
+    EMPTY = 0
+    PLAYER_ONE = 1
+    PLAYER_TWO = 2
+    WILDCARD = 3
+
 class Cell:
     def __init__(self,
         x: int,
         y: int,
         board: int,
         locked: bool=False,
-        cell_state: int=0):
+        cell_state: int=CellState.EMPTY):
         """Cells are the individual blocks that make up a board on the game face.
         Args:
             x (int): The row coordinate from 0 to the length of the board
@@ -17,7 +25,10 @@ class Cell:
         self.y = y
         self.board = board
         self.locked = locked
-        self.cell_state = cell_state
+        self.cell_state = CellState.EMPTY
 
     def __repr__(self):
         return f'Cell (X={self.x}, Y={self.y}, board={self.board}, locked={self.locked}, cell_state={self.cell_state})'
+
+    def lock_cell(self):
+        self.locked = True
