@@ -10,3 +10,8 @@ class Cell:
 
     def __repr__(self):
         return f'Cell(x_position={self.x_position}, y_position={self.y_position}, board={self.board}, locked={self.locked}, cell_state={self.cell_state})'
+
+cell = Cell(x_position=1, y_position=2, board='main_board', locked=True, cell_state='X')
+
+# Printing the cell representation
+print(cell)
