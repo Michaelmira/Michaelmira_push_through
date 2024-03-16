@@ -71,5 +71,5 @@ scratch_*
 *.bin
 *.bin.gz
 
-#models
-*.pkl
+#pycache
+__pycache__
