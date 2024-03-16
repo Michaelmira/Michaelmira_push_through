@@ -1,4 +1,7 @@
 from board import Board
 from defines import *
+from pprint import pprint
+from cube import Cube
 
-board = Board(GAME_HEIGHT, GAME_WIDTH, 0)
+
+pprint(cube)
