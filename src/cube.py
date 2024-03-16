@@ -2,14 +2,18 @@ from cell import Cell
 from board import Board
 
 class Cube:
-    def __init__(self, height: int, width: int):
+    def __init__(self, height: int, width: int, num_boards: int=4):
         """Creates a cube consisting of four boards.
 
         Args:
             height (int): The number of cells high the game is(the number of rows).
             width (int): the number of cells wide the game is (the number of columns).
+            num_boards (int, optional): The number of boards to create on the cube. Defaults to 4.
         """
-        self.boards = [Board(height, width, face) for face in range(4)]
+        self.height = height
+        self.width = width
+        self.num_boards = num_boards
+        self.boards = [Board(height, width, face) for face in range(self.num_boards)]
     
     def __repr__(self):
         """Return a string representation of the cube"""
@@ -23,6 +27,3 @@ class Cube:
                 cube_repr += "\n"
             cube_repr += "\n"
         return cube_repr
-            # cube_repr += f"Face{idx}:\n{board}\n\n"
-        # return cube_repr
-        # return '\n\n'.join([f'Face {idx}:\n{board}' for idx, board in enumerate(self.boards)])
