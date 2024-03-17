@@ -58,3 +58,7 @@ print("\n","\n")
 
 print(player1)
 print(player2)
+
+
+# CD int o SRC and python3 player.py to test logic
+
