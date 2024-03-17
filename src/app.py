@@ -1,5 +1,7 @@
 from defines import *
 from cube import Cube
+from player import Player
+from player import Player_test
 
 cube = Cube(GAME_HEIGHT, GAME_WIDTH, num_boards=NUM_BOARDS)
 
@@ -7,3 +9,5 @@ cube = Cube(GAME_HEIGHT, GAME_WIDTH, num_boards=NUM_BOARDS)
 first_board = cube.boards[0]
 some_cell = first_board.get_cell(2, 3)
 print(some_cell)
+
+Player_test()

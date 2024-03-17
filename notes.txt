@@ -27,21 +27,15 @@ game_properties :
     6. is_game_over
     7. move_histroy
     8. turn_time_limit
-    9. game_timer
+    9. game_timer                                                                                                                                                                                         
 
-player_properties
+player_properties :
     1. pushes_left
     2. lives_left
     3. name
     4. color
     5. account_id
+        playerid 0 
+        playerid 1
 
-
-
-
-
-
-
-
-
-
+    
