@@ -1,8 +1,6 @@
 from defines import *
 
 class Player:
-    TOTAL_LIVES = 3
-    TOTAL_PUSHES = 3
 
     def __init__(self, name, color, account_id):
         self.name = name
@@ -10,13 +8,17 @@ class Player:
         self.account_id = account_id
         self.pushes_left = TOTAL_PUSHES  
         self.lives_left = TOTAL_LIVES   
-    
-    def use_push(self):
-        if self.pushes_left > 0:
-            self.pushes_left -= 1
-            return True
+        self.turns_left = TOTAL_TURNS   
+
+    def player_place_piece(self):
+        if self.turns_left > 0:
+            self.player_use_turn()
+            print(f"{self.name} Placed a Piece!")
+            
+        
         else:
-            return False
+            return print("it is not your turn")
+
 
     def lose_life(self, amount):
         self.lives_left -= 1
@@ -25,15 +27,30 @@ class Player:
     def add_pushes(self,amount):
         self.pushes_left += amount
 
+    def player_use_turn(self):
+        if self.turns_left > 0:
+            self.turns_left -= 1
+            return True
+        else:
+            return False
+
     def push(self, amount):
     # Implement the action when a player pushes here
         self.pushes_left -= amount
+        self.player_use_turn()
+        
         print(f"{self.name} pushed {amount} times!")
+
+        
+    def player_turn_start(self):
+        print(f" It is now {self.name} turn")
+        self.turns_left = TOTAL_TURNS
 
     def __str__(self):
         return f"""Player: {self.name}, 
             Color:{self.color}, 
-            ID: {self.account_id}, 
+            ID: {self.account_id},
+            turns_left : {self.turns_left}, 
             Pushes Left : {self.pushes_left}, 
             Lives Left : {self.lives_left}"""
 
@@ -45,6 +62,7 @@ print(player2)
 
 print("\n","\n")
 
+player1.player_place_piece()
 player1.push(1)
 player2.lose_life(1)
 
@@ -59,6 +77,11 @@ print("\n","\n")
 print(player1)
 print(player2)
 
+player1.player_turn_start()
 
-# CD int o SRC and python3 player.py to test logic
+print(player1)
+print(player2)
+
+# CMD cd src = CD into SRC
+#  and python3 player.py to test logic
 
