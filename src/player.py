@@ -2,7 +2,7 @@ from defines import *
 
 class Player:
 
-    def __init__(self, name, color, account_id):
+    def __init__(self, name: str, color: str, account_id: str):
         self.name = name
         self.color = color
         self.account_id = account_id
@@ -14,17 +14,13 @@ class Player:
         if self.turns_left > 0:
             self.player_use_turn()
             print(f"{self.name} Placed a Piece!")
-            
-        
         else:
             return print("it is not your turn")
 
-
-    def lose_life(self, amount):
+    def lose_life(self):
         self.lives_left -= 1
-        print(f"{self.name} lost {amount} Lives!")
 
-    def add_pushes(self,amount):
+    def add_pushes(self, amount: int=1):
         self.pushes_left += amount
 
     def player_use_turn(self):
@@ -43,7 +39,7 @@ class Player:
 
         
     def player_turn_start(self):
-        print(f" It is now {self.name} turn")
+        print(f"It is now {self.name} turn")
         self.turns_left = TOTAL_TURNS
 
     def __str__(self):
@@ -64,7 +60,7 @@ print("\n","\n")
 
 player1.player_place_piece()
 player1.push(1)
-player2.lose_life(1)
+player2.lose_life()
 
 print(player1)
 print(player2)
