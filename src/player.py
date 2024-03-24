@@ -2,13 +2,22 @@ from defines import *
 
 class Player:
 
+    #TODO - color should be an identifier
     def __init__(self, name: str, color: str, account_id: str):
+        """Initializes the player class
+
+        Args:
+            name (str): The name of the player to appear on screen
+            color (str): The color of the player to appear
+            account_id (str): A unique account identifier for the player
+        """
         self.name = name
         self.color = color
         self.account_id = account_id
-        self.pushes_left = TOTAL_PUSHES  
-        self.lives_left = TOTAL_LIVES   
-        self.turns_left = TOTAL_TURNS   
+        self.score = 0
+        self.pushes_left = TOTAL_PUSHES
+        self.lives_left = TOTAL_LIVES
+        self.turns_left = TOTAL_TURNS
 
     def player_place_piece(self):
         if self.turns_left > 0:
