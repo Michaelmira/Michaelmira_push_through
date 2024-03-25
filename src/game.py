@@ -69,15 +69,58 @@ class Game():
     def advance_player_turn(self):
         self.game_turn += 1
         self.current_player = self.game_turn % len(self.players)
-    
-    #TODO - might not need this
-    # def _reset_game(self):
-    #     for player in self.players:
-    #         player.score = 0
-    #         player.lives_left = TOTAL_LIVES
-    #         player.pushes_left = TOTAL_PUSHES
-    #     self.cube = self._initialize_cube()
+
+    def new_game(self)
+    """
+    Method to start a new game.
+    """
+    #TODO logic to initialize a new game
+    print("Starting a new game...")
         
-    
-        
-        
+            
+    def surrender_game(self)
+        self.game_over()
+
+    def game_over(self)
+        """
+        Method to handle actions when the game is over.
+        """
+        self.save_move_history() # Save move history to Data Storage
+        self.save_score_to_leaderboard() # Save total score history to Data Storage
+        self.save_win_to_profile() # Save win or loss user to profile history
+        self.play_again_questionnaire() # Prompt user whether to play again
+        self.terminate_game() #go to home
+        self.restart_game() #quickstart new game with same/current settings.
+
+    def play_again_questionnaire():
+    """
+    Function to prompt the user whether they want to play again.
+    """
+    while True:
+        response = input("Do you want to play again? (yes/no): ").lower()
+        if response == "yes":  # User wants to play again
+            self.restart_game()
+            return True
+        elif response == "no": # User does not want to play again
+            self.terminate_game()
+            return False
+        else:
+            print("Invalid input. Please enter 'yes' or 'no'.")
+
+    def restart_game(self):
+        for player in self.players:
+            player.score = 0
+            player.lives_left = TOTAL_LIVES
+            player.pushes_left = TOTAL_PUSHES
+        self.cube = self._initialize_cube()
+
+    def terminate_game(self)
+        """
+        Method to terminate the current game.
+        """
+        self.navigate_to_home()
+            #TODO Logic # 
+        print("Terminating the current game... Going to home ")
+
+    def navigate_to_home()
+        #TODO Direct to homepage.
