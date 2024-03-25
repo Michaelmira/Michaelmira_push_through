@@ -95,22 +95,48 @@ class Game():
         self.terminate_game() #go to home
         self.restart_game() #quickstart new game with same/current settings.
 
-    def process_winner()
+    def process_winner(self)
         """
         Method to Congradulate winner and add win to profile.
         """
         print(f"Congradulations, player {player.name} Wins")
         #TODO player.name.wins += 1
 
-    def process_loser()
-        def process_winner()
+    def process_loser(self) 
         """
-        Method to Congradulate winner and add win to profile.
+        Method to shame loser and add loss to profile.
         """
         print(f"Sorry!, you lost... player {player.name} wins")
-        #TODO player.name.wins += 1
+        #TODO player.name.loss += 1
 
-    def play_again_questionnaire():
+    def save_move_history(self)
+        """
+        Method to save move history to data storage.
+            Parameters:
+                - move_history: The array representing the move history to be saved.
+                - data_storage: The larger array where the move history will be stored.
+        """
+        print("Saving move history to Data Storage")
+
+    def save_score_to_leaderboard(self, player_names_score_date_time, leader_board)
+        """
+        Method to save final match score to leaderboard.
+            Parameters:
+                - player_names_score_date_time:  List of lists containing player names, scores, and date_time.
+                - leader_board : The leaderboard list will have play names, Score, and date_time. Highscore will be at the top.
+        """
+         # Append the player_names_score_date_time to the leader_board
+        leader_board.append(player_names_score_date_time)
+        
+        # Sort the leader_board based on score in descending order
+        leader_board.sort(key=lambda x: x[1], reverse=True)
+
+        # Print a message or perform any additional actions as needed
+        print("Final match score saved to leaderboard.")
+
+
+
+    def play_again_questionnaire(self):
     """
     Function to prompt the user whether they want to play again.
     """
@@ -137,7 +163,6 @@ class Game():
         Method to terminate the current game.
         """
         self.navigate_to_home()
-            #TODO Logic # 
         print("Terminating the current game... Going to home ")
 
     def navigate_to_home()
