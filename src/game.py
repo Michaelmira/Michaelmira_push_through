@@ -81,16 +81,34 @@ class Game():
     def surrender_game(self)
         self.game_over()
 
+
+
     def game_over(self)
         """
         Method to handle actions when the game is over.
         """
+        self.process_winner
+        self.process_loser
         self.save_move_history() # Save move history to Data Storage
         self.save_score_to_leaderboard() # Save total score history to Data Storage
-        self.save_win_to_profile() # Save win or loss user to profile history
         self.play_again_questionnaire() # Prompt user whether to play again
         self.terminate_game() #go to home
         self.restart_game() #quickstart new game with same/current settings.
+
+    def process_winner()
+        """
+        Method to Congradulate winner and add win to profile.
+        """
+        print(f"Congradulations, player {player.name} Wins")
+        #TODO player.name.wins += 1
+
+    def process_loser()
+        def process_winner()
+        """
+        Method to Congradulate winner and add win to profile.
+        """
+        print(f"Sorry!, you lost... player {player.name} wins")
+        #TODO player.name.wins += 1
 
     def play_again_questionnaire():
     """
