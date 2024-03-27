@@ -33,3 +33,27 @@ class config():
 
     def set_turn_time_limit(self, turn_time_limit):
         self.turn_time_limit = turn_time_limit
+
+    def get_boards(self):
+        return self.boards
+
+    def get_win_condition(self):
+        return self.win_condition
+
+    def get_player_colors(self):
+        return self.player_colors
+
+    def get_game_width(self):
+        return self.game_width
+
+    def get_game_height(self):
+        return self.game_height
+
+    def get_total_pushes(self):
+        return self.total_pushes
+
+    def get_total_turns_per_player(self):
+        return self.total_turns_per_player
+
+    def get_turn_time_limit(self):
+        return self.turn_time_limit
