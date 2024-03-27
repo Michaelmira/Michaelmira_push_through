@@ -38,4 +38,23 @@ player_properties :
         playerid 0 
         playerid 1
 
-    
+custom_game_config
+    1. How many boards.
+        2? 4? 6? 8? 10?
+    2. How to win
+        1.lives_left to zero
+        2.Highest current_score
+        3.Highest amount of Points recieved 1-50?
+    3. Player colors
+        1.red 
+        2.yellow
+        3.green
+        4.blue
+    4. Game Width
+        5-10?
+    5. Game Height
+        5-10?
+    6. total pushes
+        0-10-infinite
+    7. total turns per turn
+    8. Turn time limit
