@@ -57,3 +57,22 @@ class config():
 
     def get_turn_time_limit(self):
         return self.turn_time_limit
+
+game_config = Config()
+game_config.set_boards(4)
+game_config.set_win_condition(2)
+game_config.set_player_colors(["red", "yellow", "green", "blue"])
+game_config.set_game_width(8)
+game_config.set_game_height(8)
+game_config.set_total_pushes(10)
+game_config.set_total_turns_per_player(5)
+game_config.set_turn_time_limit(60)
+
+print("Number of boards:", game_config.get_boards())
+print("Win condition:", game_config.get_win_condition())
+print("Player colors:", game_config.get_player_colors())
+print("Game width:", game_config.get_game_width())
+print("Game height:", game_config.get_game_height())
+print("Total pushes:", game_config.get_total_pushes())
+print("Total turns per player:", game_config.get_total_turns_per_player())
+print("Turn time limit:", game_config.get_turn_time_limit())
