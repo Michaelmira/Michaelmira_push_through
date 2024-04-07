@@ -1,60 +1,11 @@
-Board Properties :
-    1. Height Int
-    2. Width Int
-    3. Cube Face Int
-    4. Identifier Int
-    5. Cell List
+TODO
 
-Cell Properties :
-    1. X Position
-    2. Y Position
-    3. What Board
-    4. ?Locked
-    5. cell_state
+1. ASCII board should loop through all boards
 
-Cell State :
-    1. Empty
-    2. Player1
-    3. Player2
-    4. Wild
-    
-game_properties :
-    1. board_list
-    2. Player1
-    3. Player2
-    4. current_turn
-    5. current_score
-    6. is_game_over
-    7. move_histroy
-    8. turn_time_limit
-    9. game_timer                                                                                                                                                                                         
-
-player_properties :
-    1. pushes_left
-    2. lives_left
-    3. name
-    4. color
-    5. account_id
-        playerid 0 
-        playerid 1
-
-custom_game_config
-    1. How many boards.
-        2? 4? 6? 8? 10?
-    2. How to win
-        1.lives_left to zero
-        2.Highest current_score
-        3.Highest amount of Points recieved 1-50?
-    3. Player colors
-        1.red 
-        2.yellow
-        3.green
-        4.blue
-    4. Game Width
-        5-10?
-    5. Game Height
-        5-10?
-    6. total pushes
-        0-10-infinite
-    7. total turns per turn
-    8. Turn time limit
+2. Start writing high level functions for applying a move
+    A. validate if move is okay
+    B. apply gravity to move.
+        self.drop_piece(board_idx, col_idx, player)
+        apply_gravity() will return the actual row_idx and col_idx of the piece when it falls down
+        process_move() is applied on the fall
+        
