@@ -1,9 +1,10 @@
+from config import Config
 from defines import *
 
 class Player:
 
     #TODO - color should be an identifier
-    def __init__(self, name: str, color: str, account_id: str):
+    def __init__(self, name: str, color: str, account_id: str, config: Config):
         """Initializes the player class
 
         Args:
@@ -15,9 +16,9 @@ class Player:
         self.color = color
         self.account_id = account_id
         self.score = 0
-        self.pushes_left = TOTAL_PUSHES
-        self.lives_left = TOTAL_LIVES
-        self.turns_left = TOTAL_TURNS
+        self.pushes_left = config.get_parameter_value("total_pushes")
+        self.lives_left = config.get_parameter_value("num_lives")
+        self.turns_left = config.get_parameter_value("turns_per_move")
 
     def player_place_piece(self):
         if self.turns_left > 0:
@@ -49,7 +50,6 @@ class Player:
         
     def player_turn_start(self):
         print(f"It is now {self.name} turn")
-        self.turns_left = TOTAL_TURNS
 
     def __str__(self):
         return f"""Player: {self.name}, 
@@ -59,33 +59,33 @@ class Player:
             Pushes Left : {self.pushes_left}, 
             Lives Left : {self.lives_left}"""
 
-player1 = Player("Player 1", "Yellow", "playerid0")
-player2 = Player("Player 2", "Red", "playerid1")
+# player1 = Player("Player 1", "Yellow", "playerid0")
+# player2 = Player("Player 2", "Red", "playerid1")
 
-print(player1)
-print(player2)
+# print(player1)
+# print(player2)
 
-print("\n","\n")
+# print("\n","\n")
 
-player1.player_place_piece()
-player1.push(1)
-player2.lose_life()
+# player1.player_place_piece()
+# player1.push(1)
+# player2.lose_life()
 
-print(player1)
-print(player2)
+# print(player1)
+# print(player2)
 
-player2.push(1)
-player2.push(1)
+# player2.push(1)
+# player2.push(1)
 
-print("\n","\n")
+# print("\n","\n")
 
-print(player1)
-print(player2)
+# print(player1)
+# print(player2)
 
-player1.player_turn_start()
+# player1.player_turn_start()
 
-print(player1)
-print(player2)
+# print(player1)
+# print(player2)
 
 # CMD cd src = CD into SRC
 #  and python3 player.py to test logic

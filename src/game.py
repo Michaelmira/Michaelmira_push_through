@@ -2,6 +2,7 @@ from random import random
 from defines import *
 from cube import Cube
 from player import Player
+from config import Config
 class Game():
     def __init__(self, config: dict):
         self.config = self._initialize_config(config)
@@ -10,21 +11,33 @@ class Game():
         self.game_turn = 0
         self.current_player = 0
         self.is_game_over = False
+        self.winner, self.loser = None, None
         self.move_history = []
         
     def _initialize_config(self, config_parameters: dict):
-        #TODO - use config_parameters object if we want
-        return {}
+        return Config(config_parameters)
 
     def _initialize_cube(self):
-        cube = Cube(GAME_HEIGHT, GAME_WIDTH, NUM_BOARDS)
+        cube = Cube(
+            self.config.get_parameter_value("game_height"),
+            self.config.get_parameter_value("game_width"),
+            self.config.get_parameter_value("num_boards"))
         return cube
     
-    def _initialize_players(self):
-        players = [
-            Player("Rob", "Yellow", "playerid0"),
-            Player("Mike", "Red", "playerid1")
-        ]
+    def _initialize_players(self):        
+        num_players = self.config.get_parameter_value("num_players")
+        player_colors = self.config.get_parameter_value("player_colors")
+        
+        players = []
+        
+        for player_idx in range(num_players):
+            player_color = player_colors[player_idx]
+            player_id = f"player_id_{player_idx}"
+            player_name = f"Default_Name_{player_idx}"
+            players.append(
+                Player(player_name, player_color, player_id, self.config),
+            )
+
         return players
     
     def play_game(self):
@@ -70,46 +83,43 @@ class Game():
         self.game_turn += 1
         self.current_player = self.game_turn % len(self.players)
 
-    def new_game(self)
-    """
-    Method to start a new game.
-    """
-    #TODO logic to initialize a new game
-    print("Starting a new game...")
+    def start_new_game(self):
+        """
+        Method to start a new game.
+        """
+        print("Starting a new game...")
         
             
-    def surrender_game(self)
+    def surrender_game(self):
         self.game_over()
 
-
-
-    def game_over(self)
+    def game_over(self):
         """
         Method to handle actions when the game is over.
         """
-        self.process_winner
-        self.process_loser
+        self.process_winner()
+        self.process_loser()
         self.save_move_history() # Save move history to Data Storage
         self.save_score_to_leaderboard() # Save total score history to Data Storage
         self.play_again_questionnaire() # Prompt user whether to play again
         self.terminate_game() #go to home
         self.restart_game() #quickstart new game with same/current settings.
 
-    def process_winner(self)
+    def process_winner(self):
         """
-        Method to Congradulate winner and add win to profile.
+        Method to Congratulate winner and add win to profile.
         """
-        print(f"Congradulations, player {player.name} Wins")
+        print(f"Congradulations, player {self.winner} Wins")
         #TODO player.name.wins += 1
 
-    def process_loser(self) 
+    def process_loser(self) :
         """
         Method to shame loser and add loss to profile.
         """
-        print(f"Sorry!, you lost... player {player.name} wins")
+        print(f"Sorry!, you lost... player {self.loser} wins")
         #TODO player.name.loss += 1
 
-    def save_move_history(self)
+    def save_move_history(self):
         """
         Method to save move history to data storage.
             Parameters:
@@ -118,7 +128,7 @@ class Game():
         """
         print("Saving move history to Data Storage")
 
-    def save_score_to_leaderboard(self, player_names_score_date_time, leader_board)
+    def save_score_to_leaderboard(self, player_names_score_date_time, leader_board):
         """
         Method to save final match score to leaderboard.
             Parameters:
@@ -134,36 +144,35 @@ class Game():
         # Print a message or perform any additional actions as needed
         print("Final match score saved to leaderboard.")
 
-
-
     def play_again_questionnaire(self):
-    """
-    Function to prompt the user whether they want to play again.
-    """
-    while True:
-        response = input("Do you want to play again? (yes/no): ").lower()
-        if response == "yes":  # User wants to play again
-            self.restart_game()
-            return True
-        elif response == "no": # User does not want to play again
-            self.terminate_game()
-            return False
-        else:
-            print("Invalid input. Please enter 'yes' or 'no'.")
+        """
+        Function to prompt the user whether they want to play again.
+        """
+        while True:
+            response = input("Do you want to play again? (yes/no): ").lower()
+            if response == "yes":  # User wants to play again
+                self.restart_game()
+                return True
+            elif response == "no": # User does not want to play again
+                self.terminate_game()
+                return False
+            else:
+                print("Invalid input. Please enter 'yes' or 'no'.")
 
     def restart_game(self):
         for player in self.players:
             player.score = 0
-            player.lives_left = TOTAL_LIVES
-            player.pushes_left = TOTAL_PUSHES
+            player.lives_left = DEFAULT_TOTAL_LIVES
+            player.pushes_left = DEFAULT_TOTAL_PUSHES
         self.cube = self._initialize_cube()
 
-    def terminate_game(self)
+    def terminate_game(self):
         """
         Method to terminate the current game.
         """
         self.navigate_to_home()
         print("Terminating the current game... Going to home ")
 
-    def navigate_to_home()
-        #TODO Direct to homepage.
+    def navigate_to_home():
+        #TODO Direct to homepage
+        pass

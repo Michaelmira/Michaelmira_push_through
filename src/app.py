@@ -2,7 +2,7 @@ from defines import *
 from cube import Cube
 from game import Game
 
-cube = Cube(GAME_HEIGHT, GAME_WIDTH, num_boards=NUM_BOARDS)
+cube = Cube(DEFAULT_GAME_HEIGHT, DEFAULT_GAME_WIDTH, num_boards=DEFAULT_NUM_BOARDS)
 
 #Grab a cell and make sure it looks good
 first_board = cube.boards[0]
