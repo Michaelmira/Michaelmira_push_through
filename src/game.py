@@ -2,6 +2,7 @@ from random import random
 from defines import *
 from cube import Cube
 from player import Player
+from config import Config
 class Game():
     def __init__(self, config: dict):
         self.config = self._initialize_config(config)
@@ -14,18 +15,29 @@ class Game():
         self.move_history = []
         
     def _initialize_config(self, config_parameters: dict):
-        #TODO - use config_parameters object if we want
-        return {}
+        return Config(config_parameters)
 
     def _initialize_cube(self):
-        cube = Cube(DEFAULT_GAME_HEIGHT, DEFAULT_GAME_WIDTH, DEFAULT_NUM_BOARDS)
+        cube = Cube(
+            self.config.get_parameter_value("game_height"),
+            self.config.get_parameter_value("game_width"),
+            self.config.get_parameter_value("num_boards"))
         return cube
     
-    def _initialize_players(self):
-        players = [
-            Player("Rob", "Yellow", "playerid0"),
-            Player("Mike", "Red", "playerid1")
-        ]
+    def _initialize_players(self):        
+        num_players = self.config.get_parameter_value("num_players")
+        player_colors = self.config.get_parameter_value("player_colors")
+        
+        players = []
+        
+        for player_idx in range(num_players):
+            player_color = player_colors[player_idx]
+            player_id = f"player_id_{player_idx}"
+            player_name = f"Default_Name_{player_idx}"
+            players.append(
+                Player(player_name, player_color, player_id, self.config),
+            )
+
         return players
     
     def play_game(self):
