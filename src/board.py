@@ -1,5 +1,6 @@
 from typing import List
-from cell import Cell
+from cell import Cell, CellState
+from pprint import pprint
 
 class Board():
     def __init__(self, height: int, width: int, face: int):
@@ -53,3 +54,26 @@ class Board():
     
         return self.cells[x][y]
     
+    def _kth_letter(self, k):
+        # Ensure k is within the range of 1 to 26
+        if 0 <= k <= 25:
+            # Calculate the ASCII code for the K'th letter and convert it to a character
+            return chr(65 + k)
+        else:
+            return "Input must be between 0 and 25"
+    
+    def print_ascii_game_board(self):
+        
+        row_letters = [self._kth_letter(row_idx) for row_idx in range(self.height)]
+        row_letters = row_letters[::-1]
+        print("\n")
+        for row_idx in range(self.height):
+            row_ascii = f"{row_letters[row_idx]}  | "
+            for col_idx in range(self.width):
+                cell_state = self.cells[col_idx][row_idx].cell_state
+                for data in CellState:
+                    if cell_state == data:
+                        row_ascii += str(cell_state.value) + " | "
+            print(row_ascii)
+        print("     " + "   ".join([str(idx) for idx in range(self.width)]) + "  ")
+                
