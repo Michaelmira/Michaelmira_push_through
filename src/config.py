@@ -1,96 +1,49 @@
+from __future__ import annotations
+from defines import *
+from typing import Any
+from pprint import pprint
+class Config():
+    def __init__(self, parameters=dict):
+        parameters["boards"] = parameters.get("boards", DEFAULT_NUM_BOARDS)
+        parameters["win_condition"] = parameters.get("win_condition", DEFAULT_WIN_CONDITION)
+        parameters["total_players"] = parameters.get("total_players", DEFAULT_NUM_PLAYERS)
+        parameters["player_colors"] = parameters.get("player_colors", DEFAULT_PLAYER_COLORS)
+        parameters["game_width"] = parameters.get("game_width", DEFAULT_GAME_WIDTH)
+        parameters["game_height"] = parameters.get("game_height", DEFAULT_GAME_HEIGHT)
+        parameters["total_pushes"] = parameters.get("total_pushes", DEFAULT_NUM_TOTAL_PUSHES)
+        parameters["turns_per_move"] = parameters.get("total_turns_per_player", DEFAULT_TURNS_PER_MOVE)
+        parameters["turn_time_limit"] = parameters.get("turn_time_limit", DEFAULT_TURN_TIME_LIMIT)
+        self.parameters = parameters
+    
+    def set_parameter_value(self, parameter_name: str, value: Any):
+        """_summary_
 
-class config():
-    def __init__(self):
-        self.boards = None
-        self.win_condition = None
-        self.player_colors = None
-        self.game_width = None
-        self.game_height = None
-        self.total_pushes = None
-        self.total_turns_per_player = None
-        self.turn_time_limit = None
-        self.total_players = None
-        self.player_color_mapping = {}
+        Args:
+            parameter_name (str): _description_
+            value (Any): _description_
+        """
+        self.parameters[parameter_name] = value
+               
+    def get_parameter_value(self, parameter_name: str) -> Any | None:
+        """_summary_
 
-    def set_boards(self, boards):
-        self.boards = boards
+        Args:
+            parameter_name (str): _description_
 
-    def set_win_condition(self, win_condition):
-        self.win_condition = win_condition
+        Returns:
+            Any: _description_
+        """
+        return self.parameters.get(parameter_name)
 
-    def set_player_colors(self, player_colors):
-        self.player_colors = player_colors
+if __name__ == "__main__":
+    parameters = {
+        "boards": 4,
+        "turn_time_limit": 30
+    }
 
-    def set_game_width(self, game_width):
-        self.game_width = game_width
+    game_config = Config(parameters)
 
-    def set_game_height(self, game_height):
-        self.game_height = game_height
-
-    def set_total_pushes(self, total_pushes):
-        self.total_pushes = total_pushes
-
-    def set_total_turns_per_player(self, total_turns_per_player):
-        self.total_turns_per_player = total_turns_per_player
-
-    def set_turn_time_limit(self, turn_time_limit):
-        self.turn_time_limit = turn_time_limit
-
-    def set_total_players(self, total_players):
-        self.total_players = total_players
-
-    def set_player_color(self, player, color):
-        self.player_color_mapping[player] = color
-
-    def get_boards(self):
-        return self.boards
-
-    def get_win_condition(self):
-        return self.win_condition
-
-    def get_player_colors(self):
-        return self.player_colors
-
-    def get_game_width(self):
-        return self.game_width
-
-    def get_game_height(self):
-        return self.game_height
-
-    def get_total_pushes(self):
-        return self.total_pushes
-
-    def get_total_turns_per_player(self):
-        return self.total_turns_per_player
-
-    def get_turn_time_limit(self):
-        return self.turn_time_limit
-
-    def get_total_players(self):
-        return self.total_players
-
-    def get_player_color(self, player):
-        return self.player_color_mapping.get(player)
-
-game_config = config()
-game_config.set_boards(4)
-game_config.set_win_condition(2)
-game_config.set_total_players(4)  # Set total number of players
-game_config.set_player_colors(["red", "yellow", "green", "blue"])
-game_config.set_game_width(8)
-game_config.set_game_height(8)
-game_config.set_total_pushes(10)
-game_config.set_total_turns_per_player(5)
-game_config.set_turn_time_limit(60)
-
-
-print("Number of boards:", game_config.get_boards())
-print("Win condition:", game_config.get_win_condition())
-print("Player colors:", game_config.get_player_colors())
-print("Game width:", game_config.get_game_width())
-print("Game height:", game_config.get_game_height())
-print("Total pushes:", game_config.get_total_pushes())
-print("Total turns per player:", game_config.get_total_turns_per_player())
-print("Turn time limit:", game_config.get_turn_time_limit())
-print("Total players:", game_config.get_total_players())
-print("Player colors mapping:", game_config.player_color_mapping)
+    total_players = game_config.get_parameter_value("total_players")
+    print(total_players)
+    game_config.set_parameter_value("total_players", 10)
+    pprint(game_config.parameters)
