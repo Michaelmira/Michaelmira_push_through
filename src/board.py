@@ -2,6 +2,26 @@ from typing import List
 from cell import Cell, CellState
 from pprint import pprint
 
+class GameBoard:
+    def __init__(self, height: int, width: int, num_boards: int):
+        """
+            Creates a list of game boards of specified height and width
+         Args:
+            height (int): The number of cells high the game is (the number of rows).
+            width (int): The number of cells wide the game is (the number of columns).
+            num_boards (int): Number of game boards to create.
+        """
+        self.height = height
+        self.width = width
+        self.num_boards = num_boards
+        self.boards = [Board(height, width, face) for face in range(num_boards)]
+
+    def print_ascii_game_boards(self):
+        for board_idx, board in enumerate(self.boards):
+            print(f"Game Board {board_idx + 1}:")
+            board.print_ascii_game_board()
+
+
 class Board():
     def __init__(self, height: int, width: int, face: int):
         """Creates a game board of specified height and width
